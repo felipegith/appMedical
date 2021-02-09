@@ -1,21 +1,37 @@
+import 'react-native-gesture-handler';
 import { StatusBar } from 'expo-status-bar';
+import { NavigationContainer } from '@react-navigation/native'
+import Routes from './src/Navigation/routes'
 import React from 'react';
+import { useFonts } from 'expo-font'
+import { Poppins_300Light, Poppins_400Regular, Poppins_500Medium } from '@expo-google-fonts/poppins'
 import { StyleSheet, Text, View } from 'react-native';
+import Home from './src/screens/Home/Home'
+import Doctors from './src/Doctors/Doctors'
+
 
 export default function App() {
+  
+  const [fontsLoaded] = useFonts({
+   Poppins_300Light,
+   Poppins_400Regular,
+   Poppins_500Medium
+    
+  })
+
+  if (!fontsLoaded) {
+    return null;
+  }
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
+    <>
+    <NavigationContainer>
+      <Routes/>
       <StatusBar style="auto" />
-    </View>
+    </NavigationContainer>
+      
+    </>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+
+
